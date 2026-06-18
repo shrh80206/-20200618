@@ -13,9 +13,14 @@ interface Record {
 function App() {
   const [records, setRecords] = useState<Record[]>([]);
 
+  // 自動判斷 API 網址：如果是在雲端，就連到 Render 的後端，否則連到 localhost
+  const API_BASE_URL = window.location.hostname === 'localhost' 
+    ? 'http://localhost:5000' 
+    : 'https://20200618.onrender.com';
+
   const fetchRecords = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/records');
+      const response = await axios.get(`${API_BASE_URL}/api/records`);
       setRecords(response.data);
     } catch (error) {
       console.error('Error fetching records:', error);
@@ -26,7 +31,7 @@ function App() {
     fetchRecords();
     const interval = setInterval(fetchRecords, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [API_BASE_URL]);
 
   return (
     <div className="app-container">
