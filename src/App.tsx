@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import Game from './components/Game'
+// 把第 3 行改成帶大括號的導入
+import { Game } from './components/Game'
 import './App.css'
 
 interface Record {
