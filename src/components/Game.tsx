@@ -22,7 +22,7 @@ function makeInitialBoard(): Piece[][] {
   return board
 }
 
-export default function Game() {
+export default function Game({ apiBaseUrl }: { apiBaseUrl: string }) {
   const [board, setBoard] = useState<Piece[][]>(() => makeInitialBoard())
   const [selected, setSelected] = useState<{ r: number; c: number } | null>(null)
   const [turn, setTurn] = useState<Color>('w')
@@ -45,7 +45,7 @@ export default function Game() {
 
   const saveRecord = async (winnerColor: Color) => {
     try {
-      await axios.post('http://localhost:5000/api/records', {
+      await axios.post(`${apiBaseUrl}/api/records`, {
         winner: winnerColor === 'w' ? 'White' : 'Black',
         moves_count: movesCount
       });
