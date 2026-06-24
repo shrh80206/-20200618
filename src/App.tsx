@@ -36,7 +36,7 @@ function App() {
   return (
     <div className="app-container">
       <div className="game-section">
-        <Game />
+        <Game apiBaseUrl={API_BASE_URL} />
       </div>
       <div className="records-section">
         <h3>🏆 Recent Matches</h3>
