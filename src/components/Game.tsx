@@ -21,7 +21,7 @@ function makeInitialBoard(): Piece[][] {
   }
   return board
 }
-export function Game({ apiBaseUrl }: { apiBaseUrl: string }) {
+export default function Game({ apiBaseUrl }: { apiBaseUrl: string }) {
   const [board, setBoard] = useState<Piece[][]>(() => makeInitialBoard())
   const [selected, setSelected] = useState<{ r: number; c: number } | null>(null)
   const [turn, setTurn] = useState<Color>('w')
